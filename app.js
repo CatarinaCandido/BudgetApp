@@ -1,4 +1,5 @@
 
+/* Create Expense Object */
 class Expense{
 
     constructor(date, type, description, values) {
@@ -16,6 +17,17 @@ class Expense{
     }
 }
 
+function cleanForm(){
+    document.getElementById('date').value = ''
+    document.getElementById('type').value = ''
+    document.getElementById('description').value = ''
+    document.getElementById('values').value = ''
+}
+
+/* Object responsible to interact with data.
+* save method
+* search for data method */
+
 class DAO{
 
     constructor() {
@@ -30,6 +42,7 @@ class DAO{
         ids++
         localStorage.setItem('id',ids)
         localStorage.setItem(ids,JSON.stringify(expense))
+        cleanForm()
     }
 
     search(){
@@ -62,13 +75,6 @@ function addCost(){
         $('#successMessage').modal('show')
         Dao.save(expense)
     }
-}
-
-function cleanForm(){
-    document.getElementById('date').value = ''
-    document.getElementById('type').value = ''
-    document.getElementById('description').value = ''
-    document.getElementById('values').value = ''
 }
 
 function displayExpenses(){
