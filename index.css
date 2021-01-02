@@ -1,0 +1,84 @@
+#bodyContainer{
+
+    width: 700px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 20px auto;
+
+}
+
+#title{
+    width: 500px;
+}
+
+h1{
+    position: relative;
+    left: 400px;
+    font-size: 50px !important;
+    font-family: 'Noto Sans JP', sans-serif !important;
+}
+
+div{
+    margin-bottom: 10px;
+}
+
+#dateForm{
+    position: relative;
+    width: 200px !important;
+}
+
+#optionsType{
+    width: 300px !important;
+
+}
+
+#descriptionForm{
+    width: 300px;
+}
+
+#valueForm{
+
+    width: 100px;
+}
+
+.btn{
+
+
+    float: left;
+    color: white;
+    background-color: #4370ff;
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    border-radius: 80% !important;
+
+}
+
+.btn:hover{
+    background-color: #0c42fa;
+}
+
+#tablecontainer{
+
+    position: absolute;
+    right: 100px;
+    bottom: 50px;
+    top: 100px;
+    width: 500px;
+    height: 600px;
+
+}
+
+.elementsTable{
+
+    position: relative;
+    text-align: center;
+    width: 50px;
+    height: 20px;
+}
+
+.nav-link{
+    font-size: 30px;
+}
