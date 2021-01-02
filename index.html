@@ -1,14 +1,17 @@
 <html>
 	<head>
     <meta charset="utf-8" />
-		<title>Orçamento pessoal</title>
+		<title>Budget App</title>
 
+
+      <link rel="stylesheet" href="index.css" type="text/css">
 		<!-- Bootstrap início -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     <!-- Bootstrap fim -->
 
     <!-- Font Awesome -->
@@ -16,6 +19,11 @@
 
      <!-- JS sheet -->
     <script src="app.js"></script>
+
+      <!-- Font Google -->
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
+
 
 	</head>
 
@@ -34,10 +42,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="index.html">Add new</a>
+              <a class="nav-link" href="index.html">Add new |</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="consulta.html">Search</a>
+              <a class="nav-link" href="search.html">Search</a>
             </li>
           </ul>
           
@@ -45,47 +53,21 @@
       </div>
     </nav>
 
-    <div class="container">
-      <div class="row">
-        <div class="col mb-5">
-          <h1 class="display-4">Add new expense</h1>
-        </div>
-      </div>
+    <div class="alert alert-success" role="alert" id="success" hidden="true">
+      Expense added with success!
+    </div>
 
-      <div class="row mb-2">
-        <div class="col-md-2">
-          <select class="form-control" id="year">
-            <option value="">Year</option>
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-          </select>
+    <div id="title">
+      <h1>Add new expense</h1>
+    </div>
+
+    <container id="bodyContainer">
+
+        <div id="dateForm">
+          <input type="date" class="form-control" placeholder="date" id="date" />
         </div>
 
-        <div class="col-md-2">
-          <select class="form-control" id="month">
-            <option value="">Month</option>
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-          </select>
-        </div>
-        
-        <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Day" id="day" />
-        </div>
-
-        <div class="col-md-6">
+        <div id="optionsType">
           <select class="form-control" id="type">
             <option value="">Type</option>
             <option value="1">Food</option>
@@ -97,22 +79,72 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-8">
-          <input type="text" class="form-control" placeholder="Description" id="description" />
+
+      <div id="descriptionForm">
+          <textarea placeholder="Description" type="text" class="form-control"  id="description"> </textarea>
+
         </div>
 
-        <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Value" id="values" />
+        <div id="valueForm">
+          <input type="text"  class="form-control" placeholder="Value" id="values" />
         </div>
 
-        <div class="col-md-2 d-flex justify-content-end">
-          <button type="button" class="btn btn-primary" onclick="addCost()">
-            <i class="fas fa-plus"></i>
+        <div id="btns">
+          <button class="btn" type="button" class="btn btn-primary" onclick="addCost()">
+            <i class="fas fa-plus" style="font-size: 22px"></i>
+          </button>
+
+          <button class="btn" type="button" class="btn btn-primary" onclick="cleanForm()">
+            <i class="far fa-trash-alt" style="font-size: 22px"></i>
           </button>
         </div>
+
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="errorMessage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel" style="color:darkred"> Error Message </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Missing required fields
+            </div>
+            <div class="modal-footer">
+              <button id="errorbtn" type="button" class="btn btn-danger" data-dismiss="modal">Back</button>
+
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="successMessage" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="successModalLabel" style="color:#008b07"> Success Message </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Expense added with success!
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Back</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </container>
   </body>	
 
 </html>

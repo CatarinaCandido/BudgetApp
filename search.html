@@ -1,10 +1,12 @@
 <html>
 	<head>
     <meta charset="utf-8" />
-		<title>Orçamento pessoal</title>
+		<title>Budget App</title>
 
-		<!-- Bootstrap início -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css" type="text/css">
+
+	<!-- Bootstrap início -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -13,6 +15,10 @@
 
     <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+      <!-- Font Google -->
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
 
     <!-- JS sheet -->
     <script src="app.js"></script>
@@ -34,7 +40,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Add new</a>
+              <a class="nav-link" href="index.html">Add new |</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="consulta.html">Search</a>
@@ -45,85 +51,65 @@
       </div>
     </nav>
 
-    <div class="container">
-      <div class="row mb-5">
-        <div class="col">
-          <h1 class="display-4">Search expenses</h1>
-        </div>
+    <div id="title">
+      <h1>Search expense</h1>
+    </div>
+
+    <container id="bodyContainer">
+
+      <div id="dateForm">
+        <input type="date" class="form-control" placeholder="date" id="date" />
       </div>
 
-      <div class="row mb-2">
-        <div class="col-md-2">
-          <select class="form-control" id="year">
-            <option value="">Year</option>
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-          </select>
-        </div>
-
-        <div class="col-md-2">
-          <select class="form-control" id="month">
-            <option value="">Month</option>
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-          </select>
-        </div>
-        
-        <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Day" id="day" />
-        </div>
-
-        <div class="col-md-6">
-          <select class="form-control" id="type">
-            <option value="">Type</option>
-            <option value="1">Food</option>
-            <option value="2">Education</option>
-            <option value="3">Entertainment</option>
-            <option value="4">Health</option>
-            <option value="5">Travel</option>
-          </select>
-        </div>
+      <div id="optionsType">
+        <select class="form-control" id="type">
+          <option value="">Type</option>
+          <option value="1">Food</option>
+          <option value="2">Education</option>
+          <option value="3">Entertainment</option>
+          <option value="4">Health</option>
+          <option value="5">Travel</option>
+        </select>
+      </div>
       </div>
 
-      <div class="row  mb-5">
-        <div class="col-md-8">
-          <input type="text" class="form-control" placeholder="Description" id="description" />
-        </div>
 
-        <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Value" id="values" />
-        </div>
+      <div id="descriptionForm">
+        <textarea placeholder="Description" type="text" class="form-control"  id="description"> </textarea>
+
+      </div>
+
+      <div id="valueForm">
+        <input type="text"  class="form-control" placeholder="Value" id="values" />
+      </div>
 
         <div class="col-md-2 d-flex justify-content-end">
-          <button type="button" class="btn btn-primary">
+          <button class="btn" type="button" class="btn btn-primary" onclick="displayExpenses()">
             <i class="fas fa-search"></i>
           </button>
         </div>
       </div>
 
+      <container id="tablecontainer">
       <div class="row">
         <div class="col">
-          <table class="table" >
+          <table class="table" id="tableExpenses" >
             <thead>
-              <tr>
+              <tr class="elementsTable">
                 <th>Date</th>
                 <th>Type</th>
                 <th>Description</th>
                 <th>Value</th>
                 <th></th>
               </tr>
+              <tr class="elementsTable" >
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th></th>
+              </tr>
+
             </thead>
 
             <tbody>
@@ -132,6 +118,8 @@
         </div>
       </div>
     </div>
+    </container>
+  </container>
   </body>	
 
 </html>
